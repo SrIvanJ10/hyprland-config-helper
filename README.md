@@ -26,18 +26,6 @@ Built with bash and dialog to keep it simple and lightweight.
 - [ ] Backup system
 - [ ] Input validation
 
-## 📁 Project Structure
-
-hyprland-config-helper/
-├── src/
-│   ├── main.sh           # Entry point
-│   ├── ui/               # Dialog menus
-│   ├── config/           # Config parsing/writing
-│   └── utils/            # Helpers (backup, validation)
-├── docs/
-│   └── diagrams/         # UML diagrams
-└── README.md
-
 ## About This Project
 
 Hi! 👋 I'm Iván ([@SrIvanJ10](https://github.com/SrIvanJ10)), I'm from Seville, Spain, and I'm currently studying Software Engineering.
