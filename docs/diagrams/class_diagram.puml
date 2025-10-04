@@ -1,0 +1,101 @@
+@startuml ProjectStructure
+
+class MainUI{
+
+}
+
+class RestoreUI{
+
+}
+
+class KeybindsUI{
+
+}
+
+class KeybindsClass{
+
+}
+
+class ExecUI{
+
+}
+
+class ExecClass{
+
+}
+
+class ProgramsUI{
+
+}
+
+class ProgramsClass{
+
+}
+
+class RWManager{
+
+}
+
+class ErrorUI{
+
+}
+
+class ValidatorConfig{
+
+}
+
+class Reader{
+
+}
+
+class Writer{
+
+}
+
+class BackupManager{
+
+}
+
+class Restore{
+
+}
+
+class CreateBackup{
+
+}
+
+class AutoBackupCleaner{
+
+}
+
+' Relaciones
+MainUI --> RestoreUI
+MainUI --> KeybindsUI
+MainUI --> ExecUI
+MainUI --> ProgramsUI
+
+ProgramsUI --> ProgramsClass
+ProgramsUI --> RWManager
+
+ExecUI --> RWManager
+ExecUI --> ExecClass
+
+KeybindsUI --> RWManager
+KeybindsUI --> KeybindsClass
+
+RestoreUI --> BackupManager
+
+RWManager --> ErrorUI
+RWManager --> ValidatorConfig
+RWManager --> Reader
+RWManager --> Writer
+
+Writer --> BackupManager
+
+BackupManager --> Restore
+BackupManager --> CreateBackup
+BackupManager --> AutoBackupCleaner
+
+@enduml
+
+' This is a temporal diagram, probably it will need to be modified
