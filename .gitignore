@@ -1,0 +1,18 @@
+# Archivos temporales
+*.swp
+*.tmp
+*~
+
+# Backups
+*.bak
+*.backup
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
+
+# Sistema
+.DS_Store
