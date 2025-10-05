@@ -1,19 +1,26 @@
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/../utils/RWManager.sh"
+
 programsUi() {
+
+    #programs=$(get_values "MY PROGRAMS" "AUTOSTART")
+    mapfile -t programs < <(get_values "MY PROGRAMS" "AUTOSTART")
+
+    local options=()
+    for ((i=0; i<${#programs[@]}; i++)); do
+        options+=("$((i+1))")
+        options+=("${programs[i]}")
+    done
+
     choice=$(dialog --clear \
                     --title "MY PROGRAMS" \
-                    --menu "Please select one option:" 15 50 3 \
-                    1 "Terminal" \
-                    2 "Browser" \
-                    3 "Editor" \
+                    --menu "Please select one option: " 15 50 3 \
+                    "${options[@]}" \
+                    "+" "Add new item" \
                     3>&1 1>&2 2>&3)
     
     exit_status=$?
     clear
-
-    # Depuración
-    echo "Exit status: $exit_status"
-    echo "Choice: '$choice'"
-    read -p "Presiona Enter para continuar..."
 
     case $choice in
         1)

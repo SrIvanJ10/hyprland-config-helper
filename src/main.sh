@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ui/programs_ui.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/ui/programs_ui.sh"
 
 # Función para mostrar el menú principal
 main_menu() {
