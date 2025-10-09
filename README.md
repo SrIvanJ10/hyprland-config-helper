@@ -25,7 +25,8 @@ Built with bash and dialog to keep it simple and lightweight.
     - [x] Programs list
     - [x] Programs editor
     - [x] Programs switch active/desactive
-    - [ ] Programs delete
+    - [x] Programs delete
+    - [ ] Add new program
 - [ ] Exec-once editor
 - [ ] Keybindings editor
 - [ ] Backup system

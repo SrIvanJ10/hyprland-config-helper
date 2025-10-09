@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#exec 2> >(tee /tmp/script_debug.log)
-
+# FOR DEBUG
+#exec 3>/tmp/script_debug.log
+#BASH_XTRACEFD=3
 #set -x
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

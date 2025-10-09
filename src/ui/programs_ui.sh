@@ -2,6 +2,27 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/../utils/RWManager.sh"
 source "${SCRIPT_DIR}/../config/programs_config.sh"
 
+addNewProgram() { #$1 last program name in the list
+    local last_program_text=$1
+    local result
+    
+    result=$(dialog --stdout --clear \
+           --title "NEW PROGRAM" \
+           --inputbox "Write the new program config:" 15 50 )
+
+    if [ $? -eq 0 ]; then
+        #modify data
+        #set -x
+
+        addItem "$last_program_text" "$result"
+        
+        #sleep 100
+        #return 0
+    else
+        return 1
+    fi
+}
+
 activateOrDesactivate() { #$1 = program line
 
     local program_text="$1"
@@ -18,7 +39,7 @@ programOptions() {
             --menu "Please select one option for ${program_text}:" 15 50 3 \
             1 "Activate/Desactivate (this put/cut a #)" \
             2 "Edit" \
-            3 "Delete [Working]")
+            3 "Delete (Backup is not working yet!!)")
         
     clear
     
@@ -30,9 +51,7 @@ programOptions() {
             programEditorUi "${program_text}"
             ;;
         3)
-            # keybindingsUi (cuando lo implementes)
-            echo "Delete - Working"
-            read -p "Press Enter to continue..."
+            editItem "${program_text}" ""
             ;;
         *)
             
@@ -56,6 +75,7 @@ programEditorUi() { # $1 actual program name
 
         editItem "$program_text" "$result"
         
+        #sleep 100
         #return 0
     else
         return 1
@@ -86,12 +106,18 @@ programsUi() {
         clear
 
         if [ $exit_status -eq 0 ]; then
-            #Editor UI
 
-            programOptions "${programs[$((choice-1))]}"
-            #programEditorUi "${programs[$((choice-1))]}"
+            if [ "$choice" = "+" ]; then
 
-            #return 0
+                if [ ${#programs[@]} -gt 0 ]; then
+                    addNewProgram "${programs[-1]}"
+                else
+                    return 1
+                fi
+            else
+
+                programOptions "${programs[$((choice-1))]}"
+            fi
         else
             return 1
         fi

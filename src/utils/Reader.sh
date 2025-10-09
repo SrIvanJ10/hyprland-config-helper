@@ -12,5 +12,5 @@ get_values() {
 }
 
 get_line() { # $1 = text to find
-    grep -Fn "$1" $HOME/.config/hypr/hyprland.conf | cut -d: -f1 | head -n1
+    grep -Fxn "$1" $HOME/.config/hypr/hyprland.conf | cut -d: -f1 | head -n1
 }
