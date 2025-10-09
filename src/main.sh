@@ -1,10 +1,14 @@
 #!/bin/bash
 
+#exec 2> >(tee /tmp/script_debug.log)
+
+#set -x
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/ui/programs_ui.sh"
 
 # Función para mostrar el menú principal
-main_menu() {
+mainMenu() {
     while true; do
         choice=$(dialog \
                         --title "Hyprland Config Helper" \
@@ -39,4 +43,4 @@ main_menu() {
 }
 
 # Iniciar el menú principal
-main_menu
+mainMenu

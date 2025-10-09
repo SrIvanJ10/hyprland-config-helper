@@ -1,36 +1,44 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/../utils/RWManager.sh"
+source "${SCRIPT_DIR}/../config/programs_config.sh"
+
+activateOrDesactivate() { #$1 = program line
+
+    local program_text="$1"
+    new_status=$(switchActiveStatus "${program_text}")
+
+    editItem "${program_text}" "${new_status}"
+}
 
 programOptions() {
     local program_text=$1
 
-    choice=$(dialog \
+    choice=$(dialog  --stdout \
             --title "Hyprland Config Helper" \
             --menu "Please select one option for ${program_text}:" 15 50 3 \
-            1 "Activate/Desactivate [Working] (this put/cut a #)" \
+            1 "Activate/Desactivate (this put/cut a #)" \
             2 "Edit" \
-            3 "Delete [Working] " \
-            3>&1 1>&2 2>&3)
+            3 "Delete [Working]")
         
-        clear
-        
-        case $choice in
-            1)
-                echo "Activate/Desactivate - Working"
-                read -p "Press Enter to continue..."
-                ;;
-            2)
-                programEditorUi "${program_text}"
-                ;;
-            3)
-                # keybindingsUi (cuando lo implementes)
-                echo "Delete - Working"
-                read -p "Press Enter to continue..."
-                ;;
-            *)
-                
-                ;;
-        esac
+    clear
+    
+    case $choice in
+        1)
+            activateOrDesactivate "${program_text}"
+            ;;
+        2)
+            programEditorUi "${program_text}"
+            ;;
+        3)
+            # keybindingsUi (cuando lo implementes)
+            echo "Delete - Working"
+            read -p "Press Enter to continue..."
+            ;;
+        *)
+            
+            ;;
+    esac
+
 }
 
 programEditorUi() { # $1 actual program name

@@ -18,11 +18,16 @@ Built with bash and dialog to keep it simple and lightweight.
 ## 🗺️ Roadmap
 
 - [x] Project structure
-- [ ] Config parser
-- [ ] Main menu UI
+- [x] Basic main menu UI
+- [x] Basic RWmanager
+- [ ] Programs editor
+    - [x] Programs editor UI
+    - [x] Programs list
+    - [x] Programs editor
+    - [x] Programs switch active/desactive
+    - [ ] Programs delete
+- [ ] Exec-once editor
 - [ ] Keybindings editor
-- [ ] Animations configurator
-- [ ] Workspace manager
 - [ ] Backup system
 - [ ] Input validation
 

@@ -1,7 +1,9 @@
 @startuml ProjectStructure
 
 class MainUI{
+    SCRIPT_DIR
 
+    mainMenu()
 }
 
 class RestoreUI{
@@ -25,15 +27,22 @@ class ExecClass{
 }
 
 class ProgramsUI{
+    SCRIPT_DIR
 
+    activateOrDesactivate()
+    programOptions()
+    programEditorUi()
+    programsUi()
 }
 
 class ProgramsClass{
-
+    switchActiveStatus()
 }
 
 class RWManager{
+    SCRIPT_DIR
 
+    editItem()
 }
 
 class ErrorUI{
@@ -45,11 +54,13 @@ class ValidatorConfig{
 }
 
 class Reader{
-
+    get_values()
+    get_line()
 }
 
 class Writer{
-
+    write_change()
+    erease_line()
 }
 
 class BackupManager{
