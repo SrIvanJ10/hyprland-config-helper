@@ -1,14 +1,15 @@
 #!/bin/bash
 
-# FOR DEBUG
+### FOR DEBUG ###
 #exec 3>/tmp/script_debug.log
 #BASH_XTRACEFD=3
 #set -x
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "${SCRIPT_DIR}/ui/programs_ui.sh"
+MAIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${MAIN_DIR}/utils/RWManager.sh"
+source "${MAIN_DIR}/ui/common_ui.sh"
+source "${MAIN_DIR}/config/common_config.sh"
 
-# Función para mostrar el menú principal
 mainMenu() {
     while true; do
         choice=$(dialog \
@@ -23,12 +24,10 @@ mainMenu() {
         
         case $choice in
             1)
-                $(programsUi)
+                programsUi
                 ;;
             2)
-                # autostartUi (cuando lo implementes)
-                echo "AUTOSTART - Working"
-                read -p "Press Enter to continue..."
+                autostartUi
                 ;;
             3)
                 # keybindingsUi (cuando lo implementes)

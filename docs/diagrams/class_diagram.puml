@@ -1,7 +1,7 @@
 @startuml ProjectStructure
 
 class MainUI{
-    SCRIPT_DIR
+    MAIN_DIR
 
     mainMenu()
 }
@@ -14,28 +14,23 @@ class KeybindsUI{
 
 }
 
-class KeybindsClass{
-
-}
-
 class ExecUI{
 
 }
 
-class ExecClass{
-
-}
-
-class ProgramsUI{
+class CommonUI{
     SCRIPT_DIR
 
     activateOrDesactivate()
     programOptions()
     programEditorUi()
+}
+
+class ProgramsUI{
     programsUi()
 }
 
-class ProgramsClass{
+class CommonConfig{
     switchActiveStatus()
 }
 
@@ -80,21 +75,14 @@ class AutoBackupCleaner{
 }
 
 ' Relaciones
-MainUI --> RestoreUI
-MainUI --> KeybindsUI
-MainUI --> ExecUI
-MainUI --> ProgramsUI
+MainUI --> CommonUI
+MainUI --> RWManager
 
-ProgramsUI --> ProgramsClass
-ProgramsUI --> RWManager
-
-ExecUI --> RWManager
-ExecUI --> ExecClass
-
-KeybindsUI --> RWManager
-KeybindsUI --> KeybindsClass
-
-RestoreUI --> BackupManager
+CommonUI --> CommonConfig
+CommonUI --> RestoreUI
+CommonUI --> KeybindsUI
+CommonUI --> ExecUI
+CommonUI --> ProgramsUI
 
 RWManager --> ErrorUI
 RWManager --> ValidatorConfig

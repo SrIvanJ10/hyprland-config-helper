@@ -1,16 +1,15 @@
-programsUi() {
+autostartUi() {
     while true; do
-        #programs=$(get_values "MY PROGRAMS" "AUTOSTART")
-        mapfile -t programs < <(get_values "MY PROGRAMS" "AUTOSTART" '^\$|^#\$')
+        mapfile -t programs < <(get_values "AUTOSTART" "ENVIRONMENT VARIABLES" 'exec-once')
 
         local options=()
         for ((i=0; i<${#programs[@]}; i++)); do
             options+=("$((i+1))")
             options+=("${programs[i]}")
         done
-
+        
         choice=$(dialog --clear \
-                        --title "MY PROGRAMS" \
+                        --title "AUTOSART PROGRAMS" \
                         --menu "Please select one option: " 15 50 3 \
                         "${options[@]}" \
                         "+" "Add new program" \
@@ -24,7 +23,7 @@ programsUi() {
             if [ "$choice" = "+" ]; then
 
                 if [ ${#programs[@]} -gt 0 ]; then
-                    addNewItem "${programs[-1]}" "PROGRAM" "\$ = "
+                    addNewItem "${programs[-1]}" "AUTOSTART" "exec-once = "
                 else
                     return 1
                 fi
